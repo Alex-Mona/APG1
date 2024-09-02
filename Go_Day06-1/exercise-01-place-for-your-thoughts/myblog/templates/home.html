@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBlog</title>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+<body>
+    <!-- Логотип -->
+    <header>
+        <img src="/images/amazing_logo.png" alt="MyBlog Logo" style="width: 300px; height: 300px;">
+    </header>
+
+    <h1>Welcome to My Blog</h1>
+
+    <!-- Список статей -->
+    <div>
+        {{range .Articles}}
+        <div>
+            <h2><a href="/article/{{.ID}}">{{.Title}}</a></h2>
+        </div>
+        {{end}}
+    </div>
+
+    <!-- Пагинация -->
+    <div>
+        {{if gt .Page 1}}
+        <a href="/?page={{sub .Page 1}}">Previous</a>
+        {{end}}
+
+        {{if lt .Page .TotalPages}}
+        <a href="/?page={{add .Page 1}}">Next</a>
+        {{end}}
+    </div>
+</body>
+</html>
